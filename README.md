@@ -1,86 +1,95 @@
-# OMDB Movie Search Project
+# CineSearch 🎬
 
-## How to Set Up Your Repository
+> A modern, cinematic web application for searching and exploring millions of movies, series, and episodes.
 
-**WARNING**: This is a template project. Do not fork this repository.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://yusufatass.github.io/omdb-movie-search) <!-- Replace with your actual GitHub Pages URL -->
 
-Please follow the visual steps below to create and set up the project repository on your own GitHub profile.
+![CineSearch Screenshot](./screenshot.png) <!-- Placeholder for your actual screenshot -->
 
-1. Click the **"Use this template"** button at the top right of this page.
+CineSearch is a professional-grade, framework-free web application built to interact seamlessly with the OMDb API. It boasts a stunning dual-theme interface, advanced local sorting capabilities, and meticulously crafted UI/UX features to provide an outstanding movie discovery experience.
 
-<img width="1920" height="1080" alt="Use this template example" src="https://github.com/user-attachments/assets/137c0f6c-bc6c-4584-8752-02c067051438" />
-<br><br>
+## ✨ Features
 
-2. Select **"Create a new repository"** to generate your own public repository for this task.
+- **🔍 Intelligent Search:** Instantly search for any movie, series, or episode by title.
+- **🎛️ Advanced Filtering & Sorting:** Narrow down results by **Year** and **Type**. Sort the dynamically loaded results by **Release Year** or even **IMDb Rating** (via our background enrichment engine).
+- **🌓 Dual Cinematic Themes:** Ships with a gorgeous default **Dark Theme** and a warm, elegant **Light Theme (Coffee/Cream)**. Preferences are automatically saved.
+- **⚡ Optimized API Calls:** Uses **Debouncing** to prevent unnecessary network requests while typing.
+- **🎬 Detailed Modals:** Click on any movie card to reveal a comprehensive detail modal featuring the poster, plot, genre, director, actors, runtime, language, box office, and full ratings (IMDb, Rotten Tomatoes, Metacritic).
+- **🕰️ Search History Management:** Displays your most recent searches as clickable chips. You can easily remove individual searches with the "×" button.
+- **🔗 URL & State Persistence:** Search parameters are synced to the URL, meaning you can refresh the page or share the link without losing your search. `localStorage` is also utilized to retain UI states.
+- **📱 Fully Responsive:** Carefully crafted to look perfect on mobile devices, tablets, and massive desktop monitors.
+- **🚀 Seamless Pagination:** A custom "Load More" system flawlessly merges incoming API pages, allowing local sorting to apply globally to all loaded items.
+- **⬆️ Easy Navigation:** Includes a dynamic "Scroll to Top" floating button and a clickable logo to quickly return to the search bar.
+- **🛡️ Robust Error Handling:** Graceful, user-friendly error messages for missing movies, network failures, or invalid API keys.
 
-<img width="1920" height="1080" alt="Create a new repository" src="https://github.com/user-attachments/assets/87b9032e-6e10-4679-88bb-c42a98894edf" />
-<br><br>
+## 🛠️ Built With
 
-3. Name your repository as **"omdb-project"** and click the **"Create repository"** button.
+- **HTML5** - Semantic markup
+- **CSS3** - Vanilla CSS, Custom Properties (Variables), Glassmorphism, CSS Grid & Flexbox
+- **JavaScript (ES6+)** - Vanilla JS, Async/Await, DOM manipulation (Zero dependencies/frameworks)
+- **[OMDb API](https://www.omdbapi.com/)** - The Open Movie Database
+- **Fonts:** [Bebas Neue](https://fonts.google.com/specimen/Bebas+Neue) & [DM Sans](https://fonts.google.com/specimen/DM+Sans)
 
-<img width="1920" height="1080" alt="Create repository" src="https://github.com/user-attachments/assets/dd808d69-6ade-4903-8f77-831b643dbdff" />
-<br><br>
+## 🚀 Getting Started
 
-Upload all of your solutions to `github.com/yourusername/omdb-project`.
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### Prerequisites
+
+1. Get a free API key from [OMDb API](http://www.omdbapi.com/apikey.aspx).
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yusufatass/omdb-movie-search.git
+   cd omdb-movie-search
+   ```
+
+2. **Configure your API Key:**
+   Create a new file named `config.js` in the root directory and add your API key like this:
+   ```javascript
+   // config.js
+   const API_KEY = 'your_api_key_here'; // e.g., '1dff84d8'
+   ```
+   *Note: `config.js` is ignored by git to keep your key secure.*
+     BASE_URL: 'https://www.omdbapi.com/'
+   };
+   ```
+
+3. **Run the project:**
+   Since this is a vanilla project, you can simply open `index.html` in your browser. Alternatively, use a local server for a better development experience:
+   ```bash
+   npx serve .
+   ```
+   Navigate to `http://localhost:3000`.
+
+## 📂 File Structure
+
+```text
+omdb-movie-search/
+├── index.html        # Main HTML structure
+├── style.css         # All UI styling, themes, and animations
+├── app.js            # Application logic, state management, and API calls
+└── README.md         # Project documentation
+```
+
+## 🧠 Technical Decisions & Architecture
+
+- **Vanilla JS over Frameworks:** Built entirely with Vanilla JS to demonstrate mastery of the DOM, Event Listeners, and API integration without relying on React or Vue.
+- **Debouncing:** Implemented a custom `debounce` function on the search input to delay the API request by 500ms after the user stops typing, saving network bandwidth and avoiding API rate limits.
+- **URL Synchronization (`window.history.replaceState`):** We sync the active query, year, and type to the URL parameters. This ensures that users can bookmark or share their exact search results easily.
+- **Background Data Enrichment:** The OMDb API search endpoint (`?s=`) does not return IMDb ratings. To solve this, `app.js` uses `Promise.all()` to asynchronously fetch the detail endpoint (`?i=`) for all 10 results concurrently. This enables the beautiful UI rating badges and allows client-side sorting by IMDb score without noticeable latency.
+- **Local Sorting on Appended State:** When users click "Load More", the newly fetched page of movies is appended to the local state array. The application then completely re-renders the grid based on the active Sort Filter, ensuring that newer pages are properly interleaved with older ones.
+
+## 🔮 Future Enhancements
+
+- **Favorites / Watchlist:** Allow users to save movies to a personal watchlist utilizing `localStorage`.
+- **Advanced Filtering UI:** Transition the standard dropdowns into custom-styled, fully accessible select components.
+- **Trailers:** Integrate the YouTube Data API to fetch and play trailers directly inside the movie modal.
 
 ---
 
-## Overview
-
-This project is designed to evaluate your coding skills in web development. You are required to build a simple web application that consumes the [OMDB API](http://www.omdbapi.com/).
-
-* The application must be a fully responsive **Single Page Application (SPA)** and should display movie details such as **title, year, genre, director, and poster**.
-* The application must be written using **HTML, CSS, and JavaScript**.
-* If your project meets all the requirements, you may extend it with additional functionalities.
-* After development, you must deploy the project using [GitHub Pages](https://pages.github.com). **Projects that are not deployed to GitHub Pages will not be evaluated and will receive 0 points.**
-
-You must **create your own repository using this template** and upload your work there. 
-Do **not** attempt to push changes directly to this repository or any of its original branches.
-
----
-
-## Functional Requirements
-
-1. **Movie Search Input**
-   - Users must be able to enter a movie name and trigger a search.
-   - A search box and button are sufficient, but adding well-composed UI elements (e.g., filters similar to sahibinden.com) will earn bonus points.
-
-2. **Display Movie Details**
-   - Show at least: Title, Year, Genre, Director, and Poster image.
-   - The design is up to you.
-
-3. **Error Handling**
-   - If the movie is not found or the API returns an error, display a clear message to the user.
-   - Unhandled errors will result in point deductions.
-
-4. **Multiple Searches**
-   - Users should be able to perform multiple searches without refreshing the page.
-   - If the page is refreshed, the last search view should be retained (e.g., using LocalStorage or URL parameters).
-
-5. **Backend Proxy (Optional)**
-   - If you implement a backend, it should handle API requests and return clean JSON to the frontend.
-
----
-
-## Non-Functional Requirements
-
-1. **Performance**
-   - API calls should be efficient. Avoid unnecessary repeated requests.
-
-2. **Usability**
-   - The interface should be simple, intuitive, and user-friendly.
-   - The design is up to you.
-
-3. **Portability**
-   - The application should work across modern browsers and be responsive for different screen sizes.
-
-4. **Maintainability**
-   - Code should be modular, well-documented, and easy to extend.
-
----
-
-## Deliverables & Submission
-
-Once you have completed the project, ensure you have the following ready:
-- A **public GitHub repository** containing your project code (created via the template).
-- A **hosted version** of the project deployed on GitHub Pages.
+<p align="center">
+  <b>Created with ❤️ by <a href="https://github.com/yusufatass">Yusuf Ataş</a></b>
+</p>

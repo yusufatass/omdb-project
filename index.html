@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineSearch — Movie Search</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <button class="logo" id="logoBtn" aria-label="Go to top">
+      <span class="logo-icon">▶</span>
+      <span class="logo-text">CineSearch</span>
+    </button>
+    <div class="header-socials">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="sun-icon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="https://github.com/yusufatass" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/yusuf-atas34" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== HERO / SEARCH SECTION ===== -->
+  <section class="hero">
+    <div class="hero-bg-text" aria-hidden="true">CINEMA</div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">Explore the<br /><em>Movie Universe</em></h1>
+      <p class="hero-subtitle">Search millions of movies by title, year, or type.</p>
+
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Enter movie name…"
+            autocomplete="off"
+            aria-label="Search movies"
+          />
+
+          <!-- Year Filter -->
+          <div class="filter-divider"></div>
+          <select id="yearFilter" class="filter-select" aria-label="Year filter">
+            <option value="">Year</option>
+          </select>
+
+          <!-- Type Filter -->
+          <div class="filter-divider"></div>
+          <select id="typeFilter" class="filter-select" aria-label="Type filter">
+            <option value="">Type</option>
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+            <option value="episode">Episode</option>
+          </select>
+
+          <!-- Sort Filter -->
+          <div class="filter-divider"></div>
+          <select id="sortFilter" class="filter-select" aria-label="Sort filter">
+            <option value="">Sort: Default</option>
+            <option value="year_desc">Year (Newest)</option>
+            <option value="year_asc">Year (Oldest)</option>
+            <option value="title_asc">Title (A-Z)</option>
+            <option value="imdb_desc">IMDb Rating (Highest)</option>
+            <option value="imdb_asc">IMDb Rating (Lowest)</option>
+          </select>
+
+          <button id="searchBtn" class="search-btn" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Search History -->
+        <div class="search-history" id="searchHistory"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Loading State -->
+    <div class="state-container" id="loadingState" hidden>
+      <div class="loader">
+        <div class="loader-reel">
+          <div class="reel-hole"></div>
+          <div class="reel-hole"></div>
+          <div class="reel-hole"></div>
+        </div>
+        <p class="loader-text">Searching…</p>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div class="state-container" id="errorState" hidden>
+      <div class="error-box">
+        <span class="error-icon">✕</span>
+        <p class="error-message" id="errorMessage">An error occurred.</p>
+        <button class="retry-btn" id="retryBtn">Try Again</button>
+      </div>
+    </div>
+
+    <!-- Empty / Initial State -->
+    <div class="state-container" id="emptyState">
+      <div class="empty-box">
+        <div class="empty-icon">🎬</div>
+        <p class="empty-text">Enter the name of the movie you want to search for.</p>
+      </div>
+    </div>
+
+    <!-- Results Grid -->
+    <div id="resultsSection" hidden>
+      <div class="results-header">
+        <p class="results-count" id="resultsCount"></p>
+        <p class="results-query" id="resultsQuery"></p>
+      </div>
+      <div class="results-grid" id="resultsGrid"></div>
+      
+      <!-- Load More Button -->
+      <div class="load-more-container" id="loadMoreContainer" hidden>
+        <button id="loadMoreBtn" class="load-more-btn">Load More</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== MOVIE DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+
+      <div class="modal-inner">
+        <!-- Poster Column -->
+        <div class="modal-poster-col">
+          <img class="modal-poster" id="modalPoster" src="" alt="" />
+          <div class="modal-ratings" id="modalRatings"></div>
+        </div>
+
+        <!-- Info Column -->
+        <div class="modal-info-col">
+          <p class="modal-genre" id="modalGenre"></p>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <p class="modal-meta" id="modalMeta"></p>
+
+          <div class="modal-divider"></div>
+
+          <p class="modal-plot" id="modalPlot"></p>
+
+          <div class="modal-details" id="modalDetails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL TO TOP BTN ===== -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Return to search" hidden>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>Powered by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API</a></p>
+    <p style="margin-top: 0.5rem; opacity: 0.8;">Created by Yusuf Ataş</p>
+  </footer>
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
