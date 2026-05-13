@@ -2,9 +2,9 @@
 
 > A modern, cinematic web application for searching and exploring millions of movies, series, and episodes.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://yusufatass.github.io/omdb-movie-search) <!-- Replace with your actual GitHub Pages URL -->
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen.svg)](https://yusufatass.github.io/omdb-project/)
 
-![CineSearch Screenshot](./screenshot.png) <!-- Placeholder for your actual screenshot -->
+![CineSearch Screenshot](<img width="1870" height="936" alt="image" src="https://github.com/user-attachments/assets/aa944b50-c4e7-47da-93b4-e79c3a65b543" />) 
 
 CineSearch is a professional-grade, framework-free web application built to interact seamlessly with the OMDb API. It boasts a stunning dual-theme interface, advanced local sorting capabilities, and meticulously crafted UI/UX features to provide an outstanding movie discovery experience.
 
